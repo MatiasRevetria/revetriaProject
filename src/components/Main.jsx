@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Main = () => {
+const Main = ({data}) => {
+
+  console.log(data);
   return (
     <main className='main'>
       <h2>Contenido principal</h2>
