@@ -11,15 +11,15 @@ import ProductList from "../components/ProductList";
 import Cart from "../components/Cart";
 
 
-const Home = ({cart,handlerAddToCart}) => {
+const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
     const countItem = cart.length
     return (
         <>
         <Header />
         <Nav countItem={countItem}/>
         <Main />
-        <ProductList products={prodructList} addToCart={handlerAddToCart}/>
-        <Cart cartItems={cart}/>
+        <ProductList products={prodructList} addToCart={handlerAddToCart} />
+        <Cart cartItems={cart} removeFromCart={handlerRemoveFromCart}/>
         <Gallery />
         <Formulario />
         <Footer />
