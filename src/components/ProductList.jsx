@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Product from './Product';
 
-const ProductList = ({products,addToCart}) => {
+const ProductList = ({products,addToCart,removeFromCart}) => {
   return (
     <div>
-        {products.map((product,index) => (
-            <div key={index}>
-                <span>{product.name} - ${product.price}</span>
-                <button onClick={() => addToCart(product)}>Agregar</button>
-            </div>
+        {products.map(product => (
+          <Product product = {product} addToCart={addToCart} removeFromCart={removeFromCart}/>
         ))}
     </div>
   )

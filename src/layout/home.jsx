@@ -12,14 +12,24 @@ import Cart from "../components/Cart";
 
 
 const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
-    const countItem = cart.length
+    const countItem = cart.length;
+    const [productos, setProductos] = useState([]);
+
+    useEffect(()=>{
+      fetch('https://681d9331f74de1d219b03777.mockapi.io/productos')
+        .then((respuesta) => respuesta.json())
+        .then((datos) => setProductos(datos))
+        .catch((error) => console.error('Error:', error));
+
+    },[]);
+
     return (
         <>
         <Header />
         <Nav countItem={countItem}/>
         <Main />
-        <ProductList products={prodructList} addToCart={handlerAddToCart} />
-        <Cart cartItems={cart} removeFromCart={handlerRemoveFromCart}/>
+        <ProductList products={productos} addToCart={handlerAddToCart} removeFromCart={handlerRemoveFromCart}/>
+        <Cart cartItems={cart}/>
         <Gallery />
         <Formulario />
         <Footer />
