@@ -1,0 +1,10 @@
+#productList-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    box-sizing: border-box;
+    overflow-x: scroll;
+    gap: 1rem;
+    padding: 1rem;
+}

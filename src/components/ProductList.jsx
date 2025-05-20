@@ -1,11 +1,12 @@
 import React from 'react';
 import Product from './Product';
+import './styles/productList.css';
 
-const ProductList = ({products,addToCart,removeFromCart}) => {
+const ProductList = ({products,addToCart,removeFromCart, Agregado_en_carrito}) => {
   return (
-    <div>
+    <div id='productList-container'>
         {products.map(product => (
-          <Product product = {product} addToCart={addToCart} removeFromCart={removeFromCart}/>
+          <Product product = {product} addToCart={addToCart} removeFromCart={removeFromCart} Agregado_en_carrito={Agregado_en_carrito}/>
         ))}
     </div>
   )

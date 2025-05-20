@@ -10,11 +10,13 @@ import { prodructList } from "../utils/data";
 import ProductList from "../components/ProductList";
 import Cart from "../components/Cart";
 import loading from "../assets/Loading_icon.gif"
+import "../components/styles/home.css"
 
 const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
     const countItem = cart.length;
     const [productos, setProductos] = useState([]);
     const [carga, setCarga] = useState(true);
+
 
     useEffect(()=>{
       fetch('https://681d9331f74de1d219b03777.mockapi.io/productos')
