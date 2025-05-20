@@ -12,7 +12,7 @@
 }
 
 .product-container:hover {
-    transform: translateY(-5px);
+    transform: translateY(-50px);
 }
 
 #product_image {

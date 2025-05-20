@@ -4,6 +4,7 @@ import './styles/product.css'
 const Product = ({product, addToCart, removeFromCart}) => {
     const [cantidad, setCantidad] = useState(0)
     const [agregado, setAgregado] = useState(false)
+    const [alMenosUno, setAlMenosUno] = useState(true);
     const [precio_total, setPrecio_total] = useState(0)
 
 
@@ -14,6 +15,7 @@ const Product = ({product, addToCart, removeFromCart}) => {
     const handleRemoveFromCart = () => {
         removeFromCart(product);
         setAgregado(false);
+        setAlMenosUno(true)
         setCantidad(0)
         setPrecio_total(0)
     }
@@ -23,6 +25,7 @@ const Product = ({product, addToCart, removeFromCart}) => {
 
     const handlePrecioMas = () => {
         increase();
+        setAlMenosUno(false)
         if(cantidad == 0){
             setPrecio_total( product.precio)
         }else if(cantidad >= 1){
@@ -34,6 +37,7 @@ const Product = ({product, addToCart, removeFromCart}) => {
         decrease();
         if(cantidad == 0){
             setPrecio_total( 0 )
+            setAlMenosUno(true)
         }else if(cantidad >= 1){
             setPrecio_total( product.precio * (cantidad - 1) )
         }
@@ -53,10 +57,10 @@ const Product = ({product, addToCart, removeFromCart}) => {
                 <button onClick={handlePrecioMas}>+</button>
             </div>
             <div className="product-cart">
-                <button onClick={handleAddToCart} disabled={agregado}>
-                    {agregado ? 'Agregado' : 'Agregar'}
-                </button>
                 <button onClick={handleRemoveFromCart} >Eliminar</button>
+                <button onClick={handleAddToCart} disabled={agregado || alMenosUno}>
+                    Agregar
+                </button>
             </div>
             <span>
                 <h3>Precio Total: ${precio_total}</h3>
