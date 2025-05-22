@@ -3,8 +3,6 @@ import './styles/product.css'
 
 const Product = ({product, addToCart, removeFromCart}) => {
     const [cantidad, setCantidad] = useState(0)
-    const [agregado, setAgregado] = useState(false)
-    const [alMenosUno, setAlMenosUno] = useState(true);
     const [precio_total, setPrecio_total] = useState(0)
 
 
@@ -12,20 +10,12 @@ const Product = ({product, addToCart, removeFromCart}) => {
         addToCart({...product,cantidad});
         setAgregado(true)
     }
-    const handleRemoveFromCart = () => {
-        removeFromCart(product);
-        setAgregado(false);
-        setAlMenosUno(true)
-        setCantidad(0)
-        setPrecio_total(0)
-    }
 
     const increase = () => setCantidad(prod_selec => (prod_selec < product.stock ? prod_selec + 1 : prod_selec));
     const decrease = () => setCantidad(prod_delete => (prod_delete > 0 ? prod_delete - 1 : 0));
 
     const handlePrecioMas = () => {
         increase();
-        setAlMenosUno(false)
         if(cantidad == 0){
             setPrecio_total( product.precio)
         }else if(cantidad >= 1){
@@ -37,7 +27,6 @@ const Product = ({product, addToCart, removeFromCart}) => {
         decrease();
         if(cantidad == 0){
             setPrecio_total( 0 )
-            setAlMenosUno(true)
         }else if(cantidad >= 1){
             setPrecio_total( product.precio * (cantidad - 1) )
         }
@@ -54,11 +43,10 @@ const Product = ({product, addToCart, removeFromCart}) => {
             <div className="quantity-controls">
                 <button onClick={handlePrecioMenos}>-{console.log(precio_total)}</button>
                 <span>{cantidad}</span>
-                <button onClick={handlePrecioMas}>+</button>
+                <button onClick={handlePrecioMas}>+{console.log(precio_total)}</button>
             </div>
             <div className="product-cart">
-                <button onClick={handleRemoveFromCart} >Eliminar</button>
-                <button onClick={handleAddToCart} disabled={agregado || alMenosUno}>
+                <button onClick={handleAddToCart} disabled = { cantidad === 0}>
                     Agregar
                 </button>
             </div>

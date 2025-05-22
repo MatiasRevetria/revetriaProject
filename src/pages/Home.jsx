@@ -11,6 +11,7 @@ import ProductList from "../components/ProductList";
 import Cart from "../components/Cart";
 import loading from "../assets/Loading_icon.gif"
 import "../components/styles/home.css"
+import WhatsAppButton from "../components/WhatsAppButton";
 
 const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
     const countItem = cart.length;
@@ -37,8 +38,8 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
         {
           carga ? <img src={loading} alt="loading" /> :  <ProductList products={productos} addToCart={handlerAddToCart} removeFromCart={handlerRemoveFromCart}/>
         }
-      
-        <Cart cartItems={cart}/>
+        <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart}/>
+        <WhatsAppButton/>
         <Gallery />
         <Formulario />
         <Footer />
