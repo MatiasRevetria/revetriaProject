@@ -1,7 +1,9 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+
 import './styles/product.css'
 
-const Product = ({product, addToCart, removeFromCart}) => {
+const Product = ({product, addToCart}) => {
     const [cantidad, setCantidad] = useState(0)
     const [precio_total, setPrecio_total] = useState(0)
 
@@ -34,7 +36,7 @@ const Product = ({product, addToCart, removeFromCart}) => {
     
 
     return(
-        <div className="product-container">
+        <section className="product-container">
             <div id="product_image">
                 <img src={product.imagen} alt={product.nombre} />
             </div>
@@ -50,10 +52,13 @@ const Product = ({product, addToCart, removeFromCart}) => {
                     Agregar
                 </button>
             </div>
+
+            <Link to={`/productos/${product.id}`}> Ver mas </Link>
+
             <span>
                 <h3>Precio Total: ${precio_total}</h3>
             </span>
-        </div>
+        </section>
     )
 }
 

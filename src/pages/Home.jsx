@@ -4,7 +4,6 @@ import Nav from '../components/Nav'
 import Main from '../components/Main'
 import Gallery from '../components/Gallery'
 import Footer from '../components/Footer'
-import Contador from '../components/Contador'
 import Formulario from "../components/Formulario"
 import { prodructList } from "../utils/data";
 import ProductList from "../components/ProductList";
@@ -43,7 +42,6 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
         <Gallery />
         <Formulario />
         <Footer />
-        <Contador />
         </>
       )
 
