@@ -13,7 +13,7 @@ import { CartContext } from "./context/CartContext.jsx";
 
 function App() {
 
-  const {cart,productos, carga, handlerAddToCart, handlerRemoveFromCart,isAuthenticated, setIsAuthtenticated} = useContext(CartContext);
+  const {cart,productos, carga, handlerAddToCart, handlerRemoveFromCart,isAuthenticated, setIsAuthenticated} = useContext(CartContext);
 
   return (
     <>

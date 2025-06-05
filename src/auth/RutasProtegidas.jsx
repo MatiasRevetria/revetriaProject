@@ -1,9 +1,9 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-const RutaProtegida = ({ isAuthtenticated, children}) => {
+const RutaProtegida = ({isAuthenticated, children}) => {
 
-    if(!isAuthtenticated) {
+    if(!isAuthenticated) {
         return <Navigate to=" /login " replace />;
     }
     return children;

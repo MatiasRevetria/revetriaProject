@@ -7,7 +7,7 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([]);
     const [productos, setProductos] = useState([]);
     const [carga, setCarga] = useState(true);
-    const [isAuthenticated, setIsAuthtenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const handlerAddToCart = (product) => {
     const existe = cart.find( item => item.id === product.id );
@@ -37,9 +37,8 @@ export const CartProvider = ({children}) => {
 
 
     return (
-        <CartContext.Provider value={{cart,productos, carga, handlerAddToCart, handlerRemoveFromCart,isAuthenticated, setIsAuthtenticated}}>
+        <CartContext.Provider value={{cart,productos, carga, handlerAddToCart, handlerRemoveFromCart,isAuthenticated, setIsAuthenticated}}>
             {children}
-
         </CartContext.Provider>
     )
 }
