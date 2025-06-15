@@ -42,6 +42,20 @@ const Admin = () => {
         }
     }
 
+    const eliminarProducto = async (id) => {
+
+        const confirmar = window.confirm('Estas seguro de eliminar este producto?');
+        if (confirmar){
+            try{
+                const response = await fetch(`https://681d9331f74de1d219b03777.mockapi.io/productos/${id}`, 
+                    {method: 'DELETE',
+                    })
+            }   
+            catch(error)
+        }
+    }
+
+
     return (
         <div className="container">
             {loading ? (
