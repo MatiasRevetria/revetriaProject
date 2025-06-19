@@ -22,7 +22,7 @@ const Login = () => {
       return;
     }
     try{
-    const res = await fetch('users.json')
+    const res = await fetch('/users.json')
     const users = await res.json()
 
     const foundUser = users.find( user => user.email == email && user.password == password)

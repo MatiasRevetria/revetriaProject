@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FormularioProducto from "../components/FormularioProducto";
+import FormularioEdicion from "../components/FormularioEdicion";
+import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
+    const {setIsAuth} = useContext(CartContext)
     const [productos, setProductos] = useState([]);
-    const [form, setForm] = useState({ id: null, name: "", price: "" });
     const [loading, setLoading] = useState(true);
-    const [open, setOpen] = useState(false)
+    const [seleccionado, setSeleccionado] = useState(null)
+    const [open, setOpen] = useState(false);
+    const [openEditor, setOpenEditor] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch("https://681d9331f74de1d219b03777.mockapi.io/productos")
@@ -23,10 +29,20 @@ const Admin = () => {
             });
     }, []);
 
+    const cargarProductos = async () =>{
+        try{
+            const response = await fetch("https://681d9331f74de1d219b03777.mockapi.io/productos");
+            const data = await response.json()
+            setProductos(data);
+        }catch(err){
+            console.log('Error al cargar los productos',err);
+        };
+    };
+
     const agregarProducto = async (producto) =>{
         try{
             const respuesta = await fetch('https://681d9331f74de1d219b03777.mockapi.io/productos',{
-                method: 'POST',
+                method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -37,23 +53,48 @@ const Admin = () => {
         }
         const data = await respuesta.json()
         alert('Producto agregado correctamente')
+        cargarProductos()
+        setOpen(false)
         }catch(error){
             console.log(error.message);
         }
     }
+
+    const actualizarProducto = async (producto) => {
+        try {
+          const response = await fetch(`https://681d9331f74de1d219b03777.mockapi.io/productos/${producto.id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(producto)
+            });
+        if(!response.ok)throw Error ('Error al actualizar el producto');
+          const data = await response.json() 
+          alert('Producto actualizado correctamente');
+          setOpenEditor(false)
+          setSeleccionado(null)
+          cargarProductos();
+        } catch (error) {
+            console.log('Error al querer actualizar el producto', error);
+        };
+    };
 
     const eliminarProducto = async (id) => {
 
         const confirmar = window.confirm('Estas seguro de eliminar este producto?');
         if (confirmar){
             try{
-                const response = await fetch(`https://681d9331f74de1d219b03777.mockapi.io/productos/${id}`, 
-                    {method: 'DELETE',
-                    })
+                const response = await fetch(`https://681d9331f74de1d219b03777.mockapi.io/productos/${id}`, {method: "DELETE",});
+                if (!response.ok)throw Error('Error al eliminar el producto');
+                alert('Producto eliminado correctamente');
+                cargarProductos()
             }   
-            catch(error)
-        }
-    }
+            catch(error){
+                console.log('Error al querer eliminar el producto', error);
+            };
+        };
+    };
 
 
     return (
@@ -87,9 +128,12 @@ const Admin = () => {
                                 <span>{product.nombre}</span>
                                 <span>${product.precio}</span>
                                 <div>
-                                    <button className="editButton">Editar</button>
+                                    <button className="editButton" onClick={()=>{
+                                        setOpenEditor(true)
+                                        setSeleccionado(product)
+                                    }}>Editar</button>
 
-                                    <button className="deleteButton">Eliminar</button>
+                                    <button className="deleteButton" onClick={()=> eliminarProducto(product.id)}>Eliminar</button>
                                 </div>
                             </li>
                         ))}
@@ -97,7 +141,8 @@ const Admin = () => {
                 </>
             )}
             <button onClick={()=> setOpen(true)}>Agregar producto nuevo</button>
-            {open && (<FormularioProducto onAgregar={agregarProducto}/>)}
+                {open && (<FormularioProducto onAgregar={agregarProducto}/>)}
+                {openEditor && (<FormularioEdicion productoSeleccionado={seleccionado} onActualizar={actualizarProducto}/>)}
         </div>
     );
 };
