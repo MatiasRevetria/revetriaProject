@@ -5,8 +5,8 @@ const Main = ({data}) => {
   console.log(data);
   return (
     <main className='main'>
-      <h2>Contenido principal</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur eos unde quasi porro distinctio commodi incidunt illo libero, saepe dignissimos adipisci praesentium soluta nostrum quas officia voluptatem reiciendis. Rerum, ducimus!</p>
+      <h2>PROYECTO FINAL REACT</h2>
+      <p>Este es mi proyecto final para el curso de react de talento tech. A pesar de tener un muy duro cuatrimestre con mucho estudio y laburo; creo que pude hacer un excelente trabajo modesto pero completo. Donde aplique cada uno de los conocimientos vistos en las clases y si algo no me quedaba claro, era tan simple como reveer la clase.</p>
     </main>
   )
 }

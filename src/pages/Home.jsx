@@ -29,7 +29,6 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
 
     return (
         <>
-        <Header />
         <Nav countItem={countItem}/>
         <Main />
         {
