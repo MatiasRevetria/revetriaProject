@@ -10,6 +10,7 @@ import Login from "./pages/Login.jsx";
 import Admin from "./pages/Admin.jsx";
 import RutaProtegidas from "./auth/rutasProtegidas.jsx";
 import { CartContext } from "./context/CartContext.jsx";
+import AcercaDe from "./pages/AcercaDe.jsx";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
     <Routes>
 
       <Route path="/" element={ <Home cart={cart} handlerAddToCart={handlerAddToCart} handlerRemoveFromCart={handlerRemoveFromCart} />}/>
+      <Route path="/acerca-de-mi" element={<AcercaDe />}/>
 
       <Route path="/productos" element={carga ? <img src={loading} alt="loading" /> :  <ProductList products={productos} addToCart={handlerAddToCart} removeFromCart={handlerRemoveFromCart}/>} />
 

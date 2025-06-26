@@ -2,10 +2,8 @@ import React, {useEffect,useState} from "react";
 import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Main from '../components/Main'
-import Gallery from '../components/Gallery'
 import Footer from '../components/Footer'
 import Formulario from "../components/Formulario"
-import { prodructList } from "../utils/data";
 import ProductList from "../components/ProductList";
 import Cart from "../components/Cart";
 import loading from "../assets/Loading_icon.gif"
@@ -39,7 +37,6 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
         }
         <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart}/>
         <WhatsAppButton/>
-        <Gallery />
         <Formulario />
         <Footer />
         </>
