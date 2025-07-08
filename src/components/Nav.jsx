@@ -7,11 +7,11 @@ const Nav = ({countItem}) => {
             <ul>
                 <Link to={'/'}>Home</Link>
                 <Link to={'/Acerca-de-mi/'}>Acerca de</Link>
-                <li>Contacto</li>
+                <Link to={'/contacto'}>Contacto</Link>
                 <li>Carrito: {countItem}</li>
             </ul>
         </nav>
     )
 }
 
-export default Nav
+export default Nav 

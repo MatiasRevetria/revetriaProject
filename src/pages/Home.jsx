@@ -9,11 +9,13 @@ import Cart from "../components/Cart";
 import loading from "../assets/Loading_icon.gif"
 import "../components/styles/home.css"
 import WhatsAppButton from "../components/WhatsAppButton";
+import FiltrarProductos from "../components/FiltrarProductos";
 
 const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
     const countItem = cart.length;
     const [productos, setProductos] = useState([]);
     const [carga, setCarga] = useState(true);
+    const [filtro, setFiltro] = useState('')
 
 
     useEffect(()=>{
@@ -27,12 +29,15 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
 
     },[]);
 
+    const productosFiltrados = productos.filter((producto)=> producto.nombre.toLowerCase().includes(filtro.toLowerCase()))
+
     return (
         <>
         <Nav countItem={countItem}/>
         <Main />
+        <FiltrarProductos filtro={filtro} setFiltro={setFiltro}/>
         {
-          carga ? <img src={loading} alt="loading" /> :  <ProductList products={productos} addToCart={handlerAddToCart} removeFromCart={handlerRemoveFromCart}/>
+          carga ? <img src={loading} alt="loading" /> :  <ProductList products={productosFiltrados} addToCart={handlerAddToCart} removeFromCart={handlerRemoveFromCart}/>
         }
         <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart}/>
         <WhatsAppButton/>
