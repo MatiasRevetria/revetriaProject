@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Formulario() {
 
@@ -6,7 +7,11 @@ export default function Formulario() {
 
     const manejarEnvio = (evento) => {
         evento.preventDefault();
-        alert(`Formulario enviado por: ${nombre}`);
+        Swal.fire({
+            title: `Formulario enviado por: ${nombre}`,
+            icon: "success",
+            draggable: true
+        });
         setNombre(""); // Limpiar el campo de texto después de enviar
     }
 
