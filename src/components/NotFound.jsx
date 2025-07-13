@@ -14,7 +14,7 @@ const NotFound = () => {
         <p>
           Lo sentimos, la página que buscás no existe o fue movida.
         </p>
-        <button onClick={() => navigate("/login/")} >
+        <button onClick={() => navigate("/")} >
           Volver al inicio
         </button>
       </div>

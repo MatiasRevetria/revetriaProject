@@ -21,7 +21,7 @@ const Nav = ({ countItem }) => {
       <div className="collapse navbar-collapse" id="navbarContenido">
         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
           <li className="nav-item">
-            <Link className="nav-link" to="/">Inicio</Link>
+            <Link className="nav-link" to="/home">Inicio</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/Acerca-de-mi/">Acerca de</Link>

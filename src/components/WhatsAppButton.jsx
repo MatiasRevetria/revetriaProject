@@ -17,14 +17,15 @@ const WhatsAppButton = () => {
         left: '20px',
         backgroundColor: '#25D366',
         color: 'white',
+        display:'flex',
+        justifyContent:"center",
         borderRadius: '50%',
-        padding: '15px',
-        fontSize: '24px',
+        fontSize: '30px',
+        alignItems: 'center',
         boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
         zIndex: 1000,
       }}
-    >
-      <FaWhatsapp />
+    ><FaWhatsapp />
     </a>
   );
 };

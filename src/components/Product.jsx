@@ -1,64 +1,48 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-
+import { FaPlus, FaMinus, FaShoppingCart } from "react-icons/fa"
 import './styles/product.css'
 
 const Product = ({product, addToCart}) => {
     const [cantidad, setCantidad] = useState(0)
     const [precio_total, setPrecio_total] = useState(0)
 
+    const increase = () =>{
+        if (cantidad < product.stock){
+            const nuevaCantidad = cantidad + 1;
+            setCantidad(nuevaCantidad);
+            setPrecio_total(product.precio * nuevaCantidad)
+        }
+    }
+
+    const decrease = () =>{
+        if (cantidad > 0){
+            const nuevaCantidad = cantidad - 1;
+            setCantidad(nuevaCantidad);
+            setPrecio_total(product.precio * nuevaCantidad)
+        }
+    }
 
     const handleAddToCart = () => {
-        addToCart({...product,cantidad});
-        setAgregado(true)
+        addToCart({...product, cantidad})
     }
-
-    const increase = () => setCantidad(prod_selec => (prod_selec < product.stock ? prod_selec + 1 : prod_selec));
-    const decrease = () => setCantidad(prod_delete => (prod_delete > 0 ? prod_delete - 1 : 0));
-
-    const handlePrecioMas = () => {
-        increase();
-        if(cantidad == 0){
-            setPrecio_total( product.precio)
-        }else if(cantidad >= 1){
-            setPrecio_total( product.precio * (cantidad + 1) )
-        }
-    }
-
-    const handlePrecioMenos = () => {
-        decrease();
-        if(cantidad == 0){
-            setPrecio_total( 0 )
-        }else if(cantidad >= 1){
-            setPrecio_total( product.precio * (cantidad - 1) )
-        }
-    }
-    
 
     return(
-        <section className="product-container">
-            <div id="product_image">
-                <img src={product.imagen} alt={product.nombre} />
+        <div className="card h-100 shadow-sm">
+            <img src={product.imagen} className="card-img-top" alt={product.nombre} />
+            <div className="card-body d-flex flex-column justify-content-between">
+                <h5 className="card-title">{product.nombre}</h5>
+                <p className="card-text fw-bold text-primary">${product.precio}</p>
+                <div className="d-felx align-items-center justify-content-center mb-2">
+                    <button className="btn btn-outline-secondary" onClick={decrease}> <FaMinus /> </button>
+                    <span className="mx-3">{cantidad}</span>
+                    <button className="btn btn-outline-secondary" onClick={increase}><FaPlus/></button>
+                </div>
+                <button className="btn btn-success w-100 mb-2" onClick={handleAddToCart} disabled={cantidad === 0}><FaShoppingCart className="me-2"/>Agregar</button>
+                <p className="text-muted">Total: ${precio_total}</p>
+                <Link to={`/productos/${product.id}`} className="btn btn-link p-0 mt-2">Ver más</Link>
             </div>
-            <div className="product-name">{product.nombre}</div>
-            <div id="product_price">${product.precio}</div>
-            <div className="quantity-controls">
-                <button onClick={handlePrecioMenos}>-{console.log(precio_total)}</button>
-                <span>{cantidad}</span>
-                <button onClick={handlePrecioMas}>+{console.log(precio_total)}</button>
-            </div>
-            <div className="product-cart">
-                <button onClick={handleAddToCart} disabled = { cantidad === 0}>
-                    Agregar
-                </button>
-            </div>
-
-            <Link to={`/productos/${product.id}`}> Ver mas </Link>
-
-            <span>
-                <h3>Precio Total: ${precio_total}</h3>
-            </span>
-        </section>
+        </div>
     )
 }
 

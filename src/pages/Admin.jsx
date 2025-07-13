@@ -3,6 +3,7 @@ import FormularioProducto from "../components/FormularioProducto";
 import FormularioEdicion from "../components/FormularioEdicion";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
+import Nav from "../components/Nav";
 
 
 const Admin = () => {
@@ -11,6 +12,8 @@ const Admin = () => {
 
 
     return (
+        <>
+        <Nav />
         <div className="container">
             {loading ? (
                 <p>Cargando...</p>
@@ -57,6 +60,7 @@ const Admin = () => {
                 {open && (<FormularioProducto onAgregar={agregarProducto}/>)}
                 {openEditor && (<FormularioEdicion productoSeleccionado={seleccionado} onActualizar={actualizarProducto}/>)}
         </div>
+        </>
     );
 };
 

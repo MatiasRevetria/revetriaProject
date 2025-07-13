@@ -21,7 +21,7 @@ function App() {
     <Router>
     <Routes>
 
-      <Route path="/" element={ <Home cart={cart} handlerAddToCart={handlerAddToCart} handlerRemoveFromCart={handlerRemoveFromCart} />}/>
+      <Route path="/home" element={ <Home cart={cart} handlerAddToCart={handlerAddToCart} handlerRemoveFromCart={handlerRemoveFromCart} />}/>
       <Route path="/acerca-de-mi" element={<AcercaDe />}/>
 
       <Route path="/productos" element={carga ? <img src={loading} alt="loading" /> :  <ProductList products={productos} addToCart={handlerAddToCart} removeFromCart={handlerRemoveFromCart}/>} />
@@ -33,7 +33,7 @@ function App() {
 
       <Route path="/admin" element={<RutaProtegidas isAuthenticated={isAuthenticated}>  <Admin/> </RutaProtegidas>}/>
 
-      <Route path="/login" element={ <Login/>}/>
+      <Route path="/" element={ <Login/>}/>
 
     </Routes>
 

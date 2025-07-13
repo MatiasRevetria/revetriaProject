@@ -33,7 +33,7 @@ const Login = () => {
       setIsAuthenticated(true);
       navigate('/admin')
     }else{
-      navigate('/')
+      navigate('/home')
     }
   }
   }catch(error){

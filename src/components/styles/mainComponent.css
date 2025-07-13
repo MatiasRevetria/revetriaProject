@@ -1,0 +1,19 @@
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: row;
+    gap: 5%;
+    padding-top: 70px; /* Altura del navbar (ajustar si hace falta) */
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.main-text{
+    width: 40%;
+}
+
+.main-text h2{
+    text-align: center;
+    padding-bottom: 5%;
+}
