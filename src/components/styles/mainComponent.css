@@ -1,19 +1,53 @@
-.main-container{
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: row;
-    gap: 5%;
-    padding-top: 70px; /* Altura del navbar (ajustar si hace falta) */
-    padding-left: 2rem;
-    padding-right: 2rem;
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: row;
+  gap: 5%;
+  padding-top: 70px; /* Altura del navbar */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  flex-wrap: wrap;
 }
 
-.main-text{
-    width: 40%;
+.main-text {
+  width: 40%;
 }
 
-.main-text h2{
+.main-text h2 {
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+.main-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* 📱 Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding-bottom: 5%;
+  }
+
+  .main-text,
+  .main-image {
+    width: 100%;
+  }
+
+  .main-text {
+    margin-bottom: 2rem;
+  }
+
+  .main-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .main-text p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
 }

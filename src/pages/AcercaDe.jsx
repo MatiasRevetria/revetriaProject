@@ -18,9 +18,6 @@ const AcercaDe = () => {
         <img src={yo} alt="Mati" />
       </div>
       </article>
-      <article id="second-article">
-        
-      </article>
       </div>
     </section>
     </>
