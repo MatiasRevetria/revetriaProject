@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Nav = ({ countItem }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-      <Link className="navbar-brand" to="/">MiTienda</Link>
+      <Link className="navbar-brand" to="/home">MiTienda</Link>
 
       <button
         className="navbar-toggler"

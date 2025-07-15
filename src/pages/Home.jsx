@@ -1,5 +1,4 @@
 import React, {useEffect,useState} from "react";
-import Header from '../components/Header'
 import Nav from '../components/Nav'
 import Main from '../components/Main'
 import Footer from '../components/Footer'
@@ -73,21 +72,29 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
           </a>
         </div>
 
-        <div id="products-section" style={{
-          height:'100vh',
-          display:'flex',
-          flexDirection:'column',
-          gap:'10%'
-        }}>
-          <FiltrarProductos filtro={filtro} setFiltro={setFiltro}/>
-        {
-          carga ? <img src={loading} alt="loading" /> :  <ProductList products={productosFiltrados} addToCart={handlerAddToCart} removeFromCart={handlerRemoveFromCart}/>
-        }
-        <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart}/>
-        <WhatsAppButton/>
+        <div id="products-section" className="container mt-5">
+          <FiltrarProductos filtro={filtro} setFiltro={setFiltro} />
+          {
+            carga 
+              ? <img src={loading} alt="loading" />
+              : <ProductList 
+                  products={productosFiltrados}
+                  addToCart={handlerAddToCart}
+                  removeFromCart={handlerRemoveFromCart}
+                />
+          }
+          <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart} />
+          <WhatsAppButton />
         </div>
-        <Formulario />
-        <Footer />
+        <div className="d-flex justify-content-center" style={{
+          backgroundColor:'black',
+          padding: '2rem 1rem',
+          color: 'white'}}>
+          <div className="last_section d-flex flex-column">
+          <Formulario />
+          <Footer />
+        </div>
+        </div>
         </>
       )
 
