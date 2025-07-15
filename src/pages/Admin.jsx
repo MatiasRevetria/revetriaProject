@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import FormularioProducto from "../components/FormularioProducto";
-import FormularioEdicion from "../components/FormularioEdicion";
+import FormularioProducto from "../adminComponents/FormularioProducto";
+import FormularioEdicion from "../adminComponents/FormularioEdicion";
 import { AdminContext } from "../context/AdminContext";
 import Nav from "../components/Nav";
 import { Button, Card, Container, Row, Col, Spinner } from "react-bootstrap";
@@ -23,7 +23,7 @@ const Admin = () => {
   return (
     <>
       <Nav />
-      <Container className="my-4">
+      <Container className="my-4 mt-5">
         <h1 className="text-center mb-4">Panel Administrativo</h1>
 
         {loading ? (
@@ -64,7 +64,7 @@ const Admin = () => {
                             setSeleccionado(product);
                           }}
                         >
-                          Editar
+                          <a href="#formularios">Editar</a>
                         </Button>
                         <Button
                           variant="danger"
