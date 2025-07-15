@@ -68,8 +68,7 @@ const Nav = ({ countItem }) => {
                   <Card.Body>
                     <Card.Title>GitHub</Card.Title>
                     <Card.Text>
-                      Some quick example text to build on the card title and make up the
-                      bulk of the card's content.
+                      <a href="https://github.com/MatiasRevetria">https://github.com/MatiasRevetria</a>
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -81,10 +80,9 @@ const Nav = ({ countItem }) => {
                     height:'30px',
                   }} /></Card.Header>
                   <Card.Body>
-                    <Card.Title>Success Card Title</Card.Title>
+                    <Card.Title>WhatsApp</Card.Title>
                     <Card.Text>
-                      Some quick example text to build on the card title and make up the
-                      bulk of the card's content.
+                      +541138677999
                     </Card.Text>
                   </Card.Body>
                 </Card>

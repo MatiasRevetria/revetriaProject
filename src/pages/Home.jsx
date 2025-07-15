@@ -94,7 +94,7 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
                   setDetalle={setDetalle}
                 />
           }
-          <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart} />
+          <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart} countItem={countItem} />
           <WhatsAppButton />
         </div>
         <div className="d-flex justify-content-center" style={{

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles/cart.css"
 
-const Cart = ({ cartItems, handlerRemoveFromCart }) => {
+const Cart = ({ cartItems, handlerRemoveFromCart, countItem }) => {
   //acumulador es el valor anterior e item es el actual. Reduce devuelve
   const total = cartItems.reduce((acumulador, item) => acumulador + item.precio * item.cantidad, 0);
   const [close, setClose] = useState(true) 
@@ -19,7 +19,7 @@ const Cart = ({ cartItems, handlerRemoveFromCart }) => {
 
   return (
     <div>
-      {close ? <button className="botonOpen" onClick={handleOpen}>🛒</button> :<div className="sidecart">
+      {close ? <button className="botonOpen" onClick={handleOpen}>🛒<p style={{color:'red'}}>{countItem}</p></button> :<div className="sidecart">
       <div className="cart-container">
         <h2>Carrito de compras</h2>
         {cartItems.length === 0 ? (
