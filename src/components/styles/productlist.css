@@ -1,0 +1,18 @@
+.pagination-dark .page-item .page-link {
+  background-color: #343a40;     
+  color: white;                 
+  border-color: #343a40;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+}
+
+.pagination-dark .page-item.active .page-link {
+  background-color: #1d2024;     
+  border-color: #1d2024;
+  color: white;
+}
+
+.pagination-dark .page-item .page-link:hover {
+  background-color: #495057;
+  color: white;
+}

@@ -10,12 +10,14 @@ import "../components/styles/home.css"
 import WhatsAppButton from "../components/WhatsAppButton";
 import FiltrarProductos from "../components/FiltrarProductos";
 import hacia_abajo from '../assets/flecha-abajo.webp'
+import DetallesProducto from "../components/detallesProducto";
 
 const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
     const countItem = cart.length;
     const [productos, setProductos] = useState([]);
     const [carga, setCarga] = useState(true);
-    const [filtro, setFiltro] = useState('')
+    const [filtro, setFiltro] = useState('');
+    const [detalle, setDetalle] = useState(null);
 
 
     useEffect(()=>{
@@ -31,6 +33,14 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
 
     const productosFiltrados = productos.filter((producto)=> producto.nombre.toLowerCase().includes(filtro.toLowerCase()))
 
+    if(detalle){
+      return(
+        <div>
+          <Nav countItem={countItem} />
+          <DetallesProducto producto={detalle} onClose={()=>setDetalle(null)}/>
+        </div>
+      )
+    }
     return (
         <>
         <Nav countItem={countItem}/>
@@ -81,13 +91,14 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
                   products={productosFiltrados}
                   addToCart={handlerAddToCart}
                   removeFromCart={handlerRemoveFromCart}
+                  setDetalle={setDetalle}
                 />
           }
           <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart} />
           <WhatsAppButton />
         </div>
         <div className="d-flex justify-content-center" style={{
-          backgroundColor:'black',
+          backgroundColor:'#1d2024',
           padding: '2rem 1rem',
           color: 'white'}}>
           <div className="last_section d-flex flex-column">

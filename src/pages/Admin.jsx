@@ -1,67 +1,109 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import FormularioProducto from "../components/FormularioProducto";
 import FormularioEdicion from "../components/FormularioEdicion";
-import { useNavigate } from "react-router-dom";
 import { AdminContext } from "../context/AdminContext";
 import Nav from "../components/Nav";
-
+import { Button, Card, Container, Row, Col, Spinner } from "react-bootstrap";
 
 const Admin = () => {
+  const {
+    productos,
+    open,
+    setOpen,
+    seleccionado,
+    setSeleccionado,
+    agregarProducto,
+    actualizarProducto,
+    eliminarProducto,
+  } = useContext(AdminContext);
 
-    const {productos,open,setOpen,seleccionado,setSeleccionado,agregarProducto,actualizarProducto,eliminarProducto} = useContext(AdminContext)
+  const [openEditor, setOpenEditor] = useState(false);
+  const [loading, setLoading] = useState(false); // Este loading es solo ilustrativo
 
+  return (
+    <>
+      <Nav />
+      <Container className="my-4">
+        <h1 className="text-center mb-4">Panel Administrativo</h1>
 
-    return (
-        <>
-        <Nav />
-        <div className="container">
-            {loading ? (
-                <p>Cargando...</p>
-            ) : (
-                <>
-                    <nav>
-                        <ul className="nav">
-                            <li className="navItem">
-                                <button className="navButton">
-                                    <i className="fa-solid fa-right-from-bracket"></i>
-                                </button>
-                            </li>
-                            <li className="navItem">
-                                <a href="/admin">Admin</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <h1 className="title">Panel Administrativo</h1>
+        {loading ? (
+          <div className="text-center my-5">
+            <Spinner animation="border" role="status" />
+            <p className="mt-3">Cargando...</p>
+          </div>
+        ) : (
+          <>
+            <div className="d-flex justify-content-end mb-3">
+              <Button variant="primary" onClick={() => setOpen(true)}>
+                <a href="#formularios" style={{color:'white'}}>Agregar producto nuevo</a>
+              </Button>
+            </div>
 
-                    <ul className="list">
-                        {productos.map((product) => (
-                            <li key={product.id} className="listItem">
-                                <img
-                                    src={product.imagen}
-                                    alt={product.nombre}
-                                    className="listItemImage"
-                                />
-                                <span>{product.nombre}</span>
-                                <span>${product.precio}</span>
-                                <div>
-                                    <button className="editButton" onClick={()=>{
-                                        setOpenEditor(true)
-                                        setSeleccionado(product)
-                                    }}>Editar</button>
+            <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+              {productos.map((product) => (
+                <Col key={product.id}>
+                  <Card className="h-100">
+                    <Card.Img
+                      variant="top"
+                      src={product.imagen}
+                      alt={product.nombre}
+                      style={{ height: "200px", objectFit: "cover" }}
+                    />
+                    <Card.Body className="d-flex flex-column justify-content-between">
+                      <div>
+                        <Card.Title>{product.nombre}</Card.Title>
+                        <Card.Text className="fw-bold text-primary">
+                          ${product.precio}
+                        </Card.Text>
+                      </div>
+                      <div className="mt-3 d-flex justify-content-between">
+                        <Button
+                          variant="warning"
+                          onClick={() => {
+                            setOpenEditor(true);
+                            setSeleccionado(product);
+                          }}
+                        >
+                          Editar
+                        </Button>
+                        <Button
+                          variant="danger"
+                          onClick={() => eliminarProducto(product.id)}
+                        >
+                          Eliminar
+                        </Button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
 
-                                    <button className="deleteButton" onClick={()=> eliminarProducto(product.id)}>Eliminar</button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            )}
-            <button onClick={()=> setOpen(true)}>Agregar producto nuevo</button>
-                {open && (<FormularioProducto onAgregar={agregarProducto}/>)}
-                {openEditor && (<FormularioEdicion productoSeleccionado={seleccionado} onActualizar={actualizarProducto}/>)}
-        </div>
-        </>
-    );
+            {/* Modales de formularios */}
+            <div id='formularios' style={{
+                display:'flex',
+                justifyContent:'center',
+                gap:'2%'
+            }}>
+                {open && (
+                <FormularioProducto
+                    onAgregar={agregarProducto}
+                    onClose={() => setOpen(false)}
+                />
+                )}
+                {openEditor && (
+                <FormularioEdicion
+                    productoSeleccionado={seleccionado}
+                    onActualizar={actualizarProducto}
+                    onClose={() => setOpenEditor(false)}
+                />
+                )}
+            </div>
+          </>
+        )}
+      </Container>
+    </>
+  );
 };
 
 export default Admin;

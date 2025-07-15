@@ -8,7 +8,8 @@ import loading from "./assets/Loading_icon.gif"
 import DetallesProducto from "./components/detallesProducto.jsx"
 import Login from "./pages/Login.jsx";
 import Admin from "./pages/Admin.jsx";
-import RutaProtegidas from "./auth/rutasProtegidas.jsx";
+import RutaProtegidas from "./auth/RutasProtegidas.jsx";
+import Contacto from "./pages/Contacto.jsx";
 import { CartContext } from "./context/CartContext.jsx";
 import AcercaDe from "./pages/AcercaDe.jsx";
 
@@ -29,12 +30,13 @@ function App() {
       {/* <Route path="/productos/:id/usuarios/:idUSer" element={<DetallesProducto />} /> */}
       <Route path="/productos/:id/" element={<DetallesProducto productos = {productos} />} />
 
-      <Route path="*" element={<NotFound />}/>
+      <Route path="/contacto" element={<Contacto/>} />
 
       <Route path="/admin" element={<RutaProtegidas isAuthenticated={isAuthenticated}>  <Admin/> </RutaProtegidas>}/>
 
       <Route path="/" element={ <Login/>}/>
 
+      <Route path="*" element={<NotFound />}/>
     </Routes>
 
     </Router>

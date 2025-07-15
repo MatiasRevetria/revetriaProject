@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaPlus, FaMinus, FaShoppingCart } from "react-icons/fa"
 import './styles/product.css'
 
-const Product = ({product, addToCart}) => {
+const Product = ({product, addToCart, setDetalle}) => {
     const [cantidad, setCantidad] = useState(0)
     const [precio_total, setPrecio_total] = useState(0)
 
@@ -40,7 +40,8 @@ const Product = ({product, addToCart}) => {
                 </div>
                 <button className="btn btn-success w-100 mb-2" onClick={handleAddToCart} disabled={cantidad === 0}><FaShoppingCart className="me-2"/>Agregar</button>
                 <p className="text-muted">Total: ${precio_total}</p>
-                <Link to={`/productos/${product.id}`} className="btn btn-link p-0 mt-2">Ver más</Link>
+                {/* <Link to={`/productos/${product.id}`} className="btn btn-link p-0 mt-2">Ver más</Link> */}
+                <button type="button" class="btn btn-outline-dark" onClick={()=>setDetalle(product)}>Ver Más</button>
             </div>
         </div>
     )
