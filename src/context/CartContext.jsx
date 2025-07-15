@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 export const CartContext = createContext()
 
@@ -24,10 +25,18 @@ export const CartProvider = ({children}) => {
     const handlerRemoveFromCart = (productToDelete) => {
         toast.error(`El producto ${productToDelete.nombre} se ha eliminado del  carrito`)
     setCart(cart.filter((item) => item.id !== productToDelete.id))
-
     };
 
-        useEffect(()=>{
+    const handleComprar = ()=>{
+        Swal.fire({
+                title: 'Compra realizada!',
+                icon: "success",
+                draggable: true
+            });
+        setCart([])    
+    }
+
+    useEffect(()=>{
         fetch('https://681d9331f74de1d219b03777.mockapi.io/productos')
             .then((respuesta) => respuesta.json())
             .then((datos) => {setProductos(datos) 
@@ -40,7 +49,7 @@ export const CartProvider = ({children}) => {
 
 
     return (
-        <CartContext.Provider value={{cart,productos, carga, handlerAddToCart, handlerRemoveFromCart,isAuthenticated, setIsAuthenticated}}>
+        <CartContext.Provider value={{cart,productos, carga, handlerAddToCart, handlerRemoveFromCart,isAuthenticated, setIsAuthenticated, handleComprar}}>
             {children}
         </CartContext.Provider>
     )

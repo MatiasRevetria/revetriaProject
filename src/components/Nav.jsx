@@ -16,7 +16,7 @@ const Nav = ({ countItem }) => {
 
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3" fixed-top>
       <Link className="navbar-brand" to="/home">MiTienda</Link>
 
       <button

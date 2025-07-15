@@ -12,7 +12,7 @@ import FiltrarProductos from "../components/FiltrarProductos";
 import hacia_abajo from '../assets/flecha-abajo.webp'
 import DetallesProducto from "../components/detallesProducto";
 
-const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
+const Home = ({cart,handlerAddToCart,handlerRemoveFromCart,handleComprar}) => {
     const countItem = cart.length;
     const [productos, setProductos] = useState([]);
     const [carga, setCarga] = useState(true);
@@ -94,7 +94,7 @@ const Home = ({cart,handlerAddToCart,handlerRemoveFromCart}) => {
                   setDetalle={setDetalle}
                 />
           }
-          <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart} countItem={countItem} />
+          <Cart cartItems={cart} handlerRemoveFromCart={handlerRemoveFromCart} countItem={countItem} handleComprar={handleComprar} />
           <WhatsAppButton />
         </div>
         <div className="d-flex justify-content-center" style={{

@@ -14,19 +14,18 @@ import AcercaDe from "./pages/AcercaDe.jsx";
 
 function App() {
 
-  const {cart,productos, carga, handlerAddToCart, handlerRemoveFromCart,isAuthenticated, setIsAuthenticated} = useContext(CartContext);
+  const {cart,productos, carga, handlerAddToCart, handlerRemoveFromCart,isAuthenticated, setIsAuthenticated, handleComprar} = useContext(CartContext);
 
   return (
     <>
     <Router>
     <Routes>
 
-      <Route path="/home" element={ <Home cart={cart} handlerAddToCart={handlerAddToCart} handlerRemoveFromCart={handlerRemoveFromCart} />}/>
+      <Route path="/home" element={ <Home cart={cart} handlerAddToCart={handlerAddToCart} handlerRemoveFromCart={handlerRemoveFromCart} handleComprar={handleComprar} />}/>
       <Route path="/acerca-de-mi" element={<AcercaDe />}/>
 
       <Route path="/productos" element={carga ? <img src={loading} alt="loading" /> :  <ProductList products={productos} addToCart={handlerAddToCart} removeFromCart={handlerRemoveFromCart}/>} />
 
-      {/* <Route path="/productos/:id/usuarios/:idUSer" element={<DetallesProducto />} /> */}
       <Route path="/productos/:id/" element={<DetallesProducto productos = {productos} />} />
 
       <Route path="/admin" element={<RutaProtegidas isAuthenticated={isAuthenticated}>  <Admin/> </RutaProtegidas>}/>
